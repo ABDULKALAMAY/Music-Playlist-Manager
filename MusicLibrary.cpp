@@ -2,6 +2,7 @@
 
 // ===============================================
 // TASK 1: ADD A SONG 
+// ( ... no changes here ... )
 // ===============================================
 
 // Public function
@@ -30,6 +31,7 @@ BSTNode* MusicLibrary::addSongRecursive(BSTNode* node, Song song) {
 
 // ===============================================
 // TASK 2: SEARCH FOR A SONG 
+// ( ... no changes to searchByTitle or searchRecursive ... )
 // ===============================================
 
 // Public function
@@ -66,7 +68,8 @@ BSTNode* MusicLibrary::searchRecursive(BSTNode* node, std::string title) {
 }
 
 // ===============================================
-// TASK 3: DISPLAY ALL SONGS (for testing) 
+// TASK 3: DISPLAY ALL SONGS
+// ( ... no changes here ... )
 // ===============================================
 
 // Public function
@@ -77,12 +80,27 @@ void MusicLibrary::displayAllSongs() {
 }
 
 // Private helper function (In-Order Traversal)
-// This is the magic of a BST. It prints everything in sorted order.
 void MusicLibrary::printInOrder(BSTNode* node) {
     if (node != nullptr) {
         printInOrder(node->left); // 1. Go all the way left
-        // 2. Print the current node's song
         std::cout << "  " << node->song.title << " - " << node->song.artist << std::endl;
         printInOrder(node->right); // 3. Go right
     }
+}
+
+// ===============================================
+// --- NEW FUNCTION IMPLEMENTATION ---
+// ===============================================
+
+/**
+ * Finds a song by title and returns a pointer to it.
+ * @return Pointer to the Song, or nullptr if not found.
+ */
+Song* MusicLibrary::findSong(std::string title) {
+    BSTNode* node = searchRecursive(root, title);
+    if (node != nullptr) {
+        // Return a pointer to the song inside the node
+        return &(node->song);
+    }
+    return nullptr;
 }
