@@ -9,7 +9,10 @@ struct Song {
     std::string title;
     std::string artist;
     
-    Song(std::string t, std::string a) : title(t), artist(a) {}
+    // --- FIX ---
+    // Added default values to the constructor.
+    // This allows us to create an "empty" song like currentSong in main.cpp
+    Song(std::string t = "Nothing", std::string a = "Playing") : title(t), artist(a) {}
 };
 
 // --- Defines the Node for your Binary Search Tree ---
@@ -35,9 +38,13 @@ public:
     MusicLibrary() : root(nullptr) {} // Constructor
 
     // --- Public Functions (Your Tasks) ---
-    void addSong(Song song);                // 
-    void searchByTitle(std::string title);  // 
-    void displayAllSongs();                 // For testing 
+    void addSong(Song song);                
+    void searchByTitle(std::string title);  
+    void displayAllSongs();                 
+    
+    // --- FIX ---
+    // You must add the declaration for findSong here:
+    Song* findSong(std::string title);
 };
 
 #endif //MUSICLIBRARY_H
